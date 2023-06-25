@@ -1,16 +1,24 @@
+import React, { Component } from "react";
+
 export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
+  
+  class Toggle extends Component {
+    state = { isOpen: false };
+  
+    toggle = () => {
+      this.setState(state => ({ isOpen: !state.isOpen }));
+    };
+  
+    render() {
+      const { isOpen } = this.state;
+      const { children } = this.props;
+  
+      return (
+        <div>
+          <button onClick={this.toggle}>{isOpen ? "Hide" : "Show"}</button>
+          {isOpen && children}
+        </div>
+      );
+    }
+  }
 };
